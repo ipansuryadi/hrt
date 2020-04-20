@@ -1,4 +1,4 @@
-# horti
+# hrt
 
 ## Project setup
 ```
