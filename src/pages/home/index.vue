@@ -4,29 +4,7 @@
       class="column is-one-quarter min-h-screen has-background-primary has-text-white"
     >
       <div class="p-5">
-        <div class="columns is-vcentered is-multiline is-gapless">
-          <div class="column is-2">
-            <img
-              class="p-1"
-              src="https://bulma.io/images/placeholders/64x64.png"
-            />
-          </div>
-          <div class="column is-10">
-            <span class="pl-2">Agricultural War Room</span>
-          </div>
-          <!-- </div>
-
-          <div class="columns is-vcentered">-->
-          <div class="column is-2">
-            <img
-              class="p-1"
-              src="https://bulma.io/images/placeholders/64x64.png"
-            />
-          </div>
-          <div class="column is-10">
-            <span class="pl-2">Gedor Horti</span>
-          </div>
-        </div>
+        <horti-label-sidebar />
         <div class="p-3" />
         <div class="columns">
           <div class="column">
@@ -96,7 +74,7 @@
               <div class="pl-2 has-text-white">
                 <span class="font-bold">Tentang Kami</span>
                 <br />
-                <span class="is-size-7">Informasi terkait aplikasi</span>
+                <small>Informasi terkait aplikasi</small>
               </div>
             </div>
           </div>
@@ -113,7 +91,7 @@
               <div class="pl-2 has-text-white">
                 <span class="font-bold">Bisnis Proses</span>
                 <br />
-                <span class="is-size-7">Bisnis proses aplikasi</span>
+                <small>Bisnis proses aplikasi</small>
               </div>
             </div>
           </div>
@@ -124,10 +102,14 @@
 </template>
 
 <script>
+import HortiLabelSidebar from "../../components/HortiLabelSidebar";
 export default {
+  components: {
+    HortiLabelSidebar
+  },
   data() {
     return {
-      open: true,
+      open: false,
       overlay: true,
       fullheight: true,
       fullwidth: false,

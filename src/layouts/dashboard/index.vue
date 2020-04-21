@@ -9,16 +9,14 @@
       type="is-primary"
       open
     >
-      <div class="p-3">
+      <div class="p-3 pr-5">
         <aside class="menu">
-          <!-- <p class="menu-label">
-            General
-          </p> -->
+          <horti-label-sidebar :reduce="reduce" />
           <ul class="menu-list">
-            <li>
+            <li v-for="(menu, menuIndex) in menus" :key="menuIndex">
               <a
-                :class="activeMenu === 'dashboard' && 'is-active'"
-                @click="menuClicked('dashboard')"
+                :class="activeMenu === menu.name && 'is-active'"
+                @click="menuClicked(menu.name, menu.subMenu !== undefined)"
               >
                 <div class="flex flex-column items-center">
                   <span class="flex-initial">
@@ -29,56 +27,47 @@
                       />
                     </figure>
                   </span>
-                  <span class="flex-1 pl-2">Dashboard</span>
+                  <span class="flex-1 pl-2">{{ menu.label }}</span>
+                  <template v-if="menu.subMenu !== undefined">
+                    <span class="icon" v-show="!reduce">
+                      <i
+                        :class="
+                          expanded === 'ekspor-impor'
+                            ? 'fas fa-chevron-up'
+                            : 'fas fa-chevron-down'
+                        "
+                      ></i>
+                    </span>
+                  </template>
                 </div>
               </a>
-            </li>
-            <li>
-              <a
-                :class="activeMenu === 'produksi-terkini' && 'is-active'"
-                @click="menuClicked('produksi-terkini', true)"
-              >
-                <div class="flex flex-column items-center">
-                  <span class="flex-initial">
-                    <figure class="image is-24x24">
-                      <img
-                        class="is-rounded"
-                        src="https://bulma.io/images/placeholders/32x32.png"
-                      />
-                    </figure>
-                  </span>
-                  <span class="flex-1 pl-2">Produksi Terkini</span>
-                  <span class="icon" v-show="!reduce">
-                    <i
-                      :class="
-                        expanded === 'produksi-terkini'
-                          ? 'fas fa-chevron-up'
-                          : 'fas fa-chevron-down'
-                      "
-                    ></i
-                  ></span>
-                </div>
-              </a>
-              <ul v-show="expanded === 'produksi-terkini'">
-                <li>
-                  <a
-                    :class="activeSubMenu === 'produksi-terkini' && 'is-active'"
-                    @click="subMenuClicked('produksi-terkini')"
-                  >
-                    <div class="flex flex-column items-center">
-                      <span class="flex-initial">
-                        <figure class="image is-24x24">
-                          <img
-                            class="is-rounded"
-                            src="https://bulma.io/images/placeholders/32x32.png"
-                          />
-                        </figure>
-                      </span>
-                      <span class="flex-1 pl-2">Dashboard</span>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+              <transition name="zoom-fade" mode="out-in">
+                <template v-if="menu.subMenu !== undefined">
+                  <ul v-show="expanded === menu.name">
+                    <li
+                      v-for="(subMenu, subMenuIndex) in menu.subMenu"
+                      :key="subMenuIndex"
+                    >
+                      <a
+                        :class="activeSubMenu === subMenu.name && 'is-active'"
+                        @click="subMenuClicked(subMenu.name)"
+                      >
+                        <div class="flex flex-column items-center">
+                          <span class="flex-initial">
+                            <figure class="image is-24x24">
+                              <img
+                                class="is-rounded"
+                                src="https://bulma.io/images/placeholders/32x32.png"
+                              />
+                            </figure>
+                          </span>
+                          <span class="flex-1 pl-2">{{ subMenu.label }}</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </template>
+              </transition>
             </li>
           </ul>
         </aside>
@@ -88,10 +77,10 @@
     <div
       class="absolute"
       style="z-index:42; top:1rem; cursor:pointer"
-      :style="reduce ? 'left:63px' : 'left:243px'"
+      :style="reduce ? 'left:68px' : 'left:248px'"
       @click="reduce = !reduce"
     >
-      <span class="icon is-medium absolute has-background-white rounded-full">
+      <span class="icon absolute has-background-white rounded-full">
         <i
           class="fas fa-lg"
           :class="reduce ? 'fa-chevron-circle-right' : 'fa-chevron-circle-left'"
@@ -112,13 +101,41 @@
 </template>
 
 <script>
+import HortiLabelSidebar from "../../components/HortiLabelSidebar";
 export default {
+  components: {
+    HortiLabelSidebar
+  },
   data() {
     return {
       reduce: false,
       activeMenu: "dashboard",
       activeSubMenu: "dashboard",
-      expanded: ""
+      expanded: "",
+      menus: [
+        {
+          label: "Dashboard",
+          name: "dashboard"
+        },
+        {
+          label: "Ekspor Impor",
+          name: "ekspor-impor",
+          subMenu: [
+            {
+              label: "Ekspor",
+              name: "ekspor"
+            },
+            {
+              label: "Impor",
+              name: "impor"
+            },
+            {
+              label: "Neraca",
+              name: "neraca"
+            }
+          ]
+        }
+      ]
     };
   },
   methods: {
@@ -213,5 +230,15 @@ export default {
       }
     }
   }
+}
+</style>
+<style lang="css">
+.menu-list a.is-active {
+  background-color: #16954f;
+  color: #fff;
+  font-weight: bold;
+}
+.menu-list a {
+  color: #fff;
 }
 </style>

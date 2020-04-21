@@ -89,7 +89,9 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 $family-primary: "Montserrat", sans-serif;
-
+// general
+$body-font-size: 0.875rem;
+$size-normal: 0.875rem;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

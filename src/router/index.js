@@ -33,9 +33,25 @@ const routes = [
         }
       },
       {
-        path: "produksi-terkini",
-        name: "produksi-terkini",
-        component: () => import("../pages/produksi-terkini"),
+        path: "ekspor",
+        name: "ekspor",
+        component: () => import("../pages/ekspor-impor/ekspor"),
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: "impor",
+        name: "impor",
+        component: () => import("../pages/ekspor-impor/impor"),
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: "neraca",
+        name: "neraca",
+        component: () => import("../pages/ekspor-impor/neraca"),
         meta: {
           requiresAuth: true
         }
