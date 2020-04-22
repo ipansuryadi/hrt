@@ -1,5 +1,18 @@
 <template>
   <section>
+    <div
+      class="sticky"
+      style="z-index:42; top:1rem; cursor:pointer"
+      :style="reduce ? 'margin-left:68px' : 'margin-left:248px'"
+      @click="reduce = !reduce"
+    >
+      <span class="icon absolute has-background-white rounded-full">
+        <i
+          class="fas fa-lg"
+          :class="reduce ? 'fa-chevron-circle-right' : 'fa-chevron-circle-left'"
+        ></i>
+      </span>
+    </div>
     <b-sidebar
       position="fixed"
       :mobile="'reduce'"
@@ -73,26 +86,12 @@
         </aside>
       </div>
     </b-sidebar>
-
-    <div
-      class="absolute"
-      style="z-index:42; top:1rem; cursor:pointer"
-      :style="reduce ? 'left:68px' : 'left:248px'"
-      @click="reduce = !reduce"
-    >
-      <span class="icon absolute has-background-white rounded-full">
-        <i
-          class="fas fa-lg"
-          :class="reduce ? 'fa-chevron-circle-right' : 'fa-chevron-circle-left'"
-        ></i>
-      </span>
-    </div>
     <div class="flex">
       <div :style="reduce ? 'width:80px' : 'width:260px'"></div>
       <div class="flex-1">
         <div class="p-5">
           <transition name="zoom-fade" mode="out-in">
-            <router-view />
+            <router-view :key="reduce" />
           </transition>
         </div>
       </div>
