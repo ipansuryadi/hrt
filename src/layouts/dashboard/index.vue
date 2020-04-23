@@ -54,7 +54,7 @@
                   </template>
                 </div>
               </a>
-              <transition name="zoom-fade" mode="out-in">
+              <transition name="zoom-fade">
                 <template v-if="menu.subMenu !== undefined">
                   <ul v-show="expanded === menu.name">
                     <li
@@ -89,10 +89,10 @@
     <div class="flex">
       <div :style="reduce ? 'width:80px' : 'width:260px'"></div>
       <div class="flex-1">
-        <div class="p-5">
-          <transition name="zoom-fade" mode="out-in">
-            <router-view :key="reduce" />
-          </transition>
+        <div class="px-6 py-3">
+          <!-- <transition name="zoom-fade" mode="out-in"> -->
+          <router-view :key="reduce" />
+          <!-- </transition> -->
         </div>
       </div>
     </div>
@@ -115,6 +115,10 @@ export default {
         {
           label: "Dashboard",
           name: "dashboard"
+        },
+        {
+          label: "Harga",
+          name: "harga"
         },
         {
           label: "Ekspor Impor",

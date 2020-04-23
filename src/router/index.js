@@ -55,6 +55,14 @@ const routes = [
         meta: {
           requiresAuth: true
         }
+      },
+      {
+        path: "harga",
+        name: "harga",
+        component: () => import("../pages/harga"),
+        meta: {
+          requiresAuth: true
+        }
       }
     ]
   }
