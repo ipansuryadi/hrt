@@ -2,7 +2,6 @@
   <div>
     <vue-apex-charts
       type="bar"
-      height="350"
       :options="barChart.chartOptions"
       :series="barChart.series"
     ></vue-apex-charts>
@@ -10,7 +9,6 @@
 </template>
 <script>
 import VueApexCharts from "vue-apexcharts";
-const themeColors = ["#7367F0", "#28C76F", "#EA5455", "#FF9F43", "#1E1E1E"];
 export default {
   components: {
     VueApexCharts
@@ -25,7 +23,7 @@ export default {
         ],
         chartOptions: {
           redrawOnParentResize: true,
-          colors: themeColors,
+          colors: ["#f67575"],
           plotOptions: {
             bar: {
               horizontal: false

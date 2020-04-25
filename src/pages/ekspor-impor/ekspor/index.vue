@@ -45,12 +45,12 @@
     <div class="columns">
       <div class="column">
         <div class="box">
-          <line-chart-simple />
+          <area-chart-simple />
         </div>
       </div>
       <div class="column">
         <div class="box">
-          <line-chart-simple />
+          <area-chart-simple />
         </div>
       </div>
     </div>
@@ -140,12 +140,12 @@
 </template>
 <script>
 import ColumnChart from "./components/ColumnChart";
-import LineChartSimple from "../../dashboard/components/LineChartSimple";
+import AreaChartSimple from "../../dashboard/components/AreaChartSimple";
 import AsyncDataTable from "./components/AsyncDataTable";
 export default {
   components: {
     ColumnChart,
-    LineChartSimple,
+    AreaChartSimple,
     AsyncDataTable
   }
 };

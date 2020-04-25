@@ -29,7 +29,7 @@ const routes = [
         name: "dashboard",
         component: () => import("../pages/dashboard"),
         meta: {
-          requiresAuth: true
+          // requiresAuth: true
         }
       },
       {
@@ -37,7 +37,7 @@ const routes = [
         name: "ekspor",
         component: () => import("../pages/ekspor-impor/ekspor"),
         meta: {
-          requiresAuth: true
+          // requiresAuth: true
         }
       },
       {
@@ -45,7 +45,7 @@ const routes = [
         name: "impor",
         component: () => import("../pages/ekspor-impor/impor"),
         meta: {
-          requiresAuth: true
+          // requiresAuth: true
         }
       },
       {
@@ -53,7 +53,7 @@ const routes = [
         name: "neraca",
         component: () => import("../pages/ekspor-impor/neraca"),
         meta: {
-          requiresAuth: true
+          // requiresAuth: true
         }
       },
       {
@@ -61,7 +61,7 @@ const routes = [
         name: "harga",
         component: () => import("../pages/harga"),
         meta: {
-          requiresAuth: true
+          // requiresAuth: true
         }
       }
     ]

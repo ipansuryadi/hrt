@@ -1,8 +1,7 @@
 <template>
   <div>
     <vue-apex-charts
-      type="line"
-      height="350"
+      type="area"
       :options="lineChartSimple.chartOptions"
       :series="lineChartSimple.series"
     ></vue-apex-charts>
@@ -10,7 +9,6 @@
 </template>
 <script>
 import VueApexCharts from "vue-apexcharts";
-const themeColors = ["#7367F0", "#28C76F", "#EA5455", "#FF9F43", "#1E1E1E"];
 export default {
   components: {
     VueApexCharts
@@ -25,29 +23,28 @@ export default {
           }
         ],
         chartOptions: {
+          markers: {
+            size: 6
+          },
           redrawOnParentResize: true,
           chart: {
             zoom: {
               enabled: false
             }
           },
-          colors: themeColors,
+          colors: ["#1eb2a6"],
           dataLabels: {
             enabled: false
           },
           stroke: {
-            curve: "straight"
+            curve: "straight",
+            width: 2
           },
-          title: {
-            text: "Product Trends by Month",
-            align: "left"
-          },
-          grid: {
-            row: {
-              colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-              opacity: 0.5
-            }
-          },
+          // title: {
+          //   text: "Product Trends by Month",
+          //   align: "left"
+          // },
+          grid: {},
           xaxis: {
             categories: [
               "Jan",

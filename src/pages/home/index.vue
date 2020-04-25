@@ -1,131 +1,92 @@
 <template>
   <div class="columns is-gapless">
-    <div
-      class="column is-one-quarter min-h-screen has-background-primary has-text-white"
-    >
-      <div class="p-5">
+    <div class="column is-one-quarter min-h-screen bg-white">
+      <div class="p-6">
         <horti-label-sidebar />
         <div class="p-3" />
         <div class="columns">
-          <div class="column">
+          <div class="column text-gray-800 text-lg">
             Silahkan masukkan
-            <span class="has-text-weight-bold">username</span> dan
-            <span class="has-text-weight-bold">password</span> kamu
+            <span class="font-medium">username</span> dan
+            <span class="font-medium">password</span> kamu
           </div>
         </div>
-        <div class="p-1" />
-        <b-field>
-          <b-input placeholder="username" icon-pack="fas" icon="user"></b-input>
-        </b-field>
-        <div class="p-1" />
+        <div class="p-3" />
         <b-field>
           <b-input
+            v-model="bzemail"
+            placeholder="username"
+            icon-pack="fas"
+            icon="user"
+            custom-class="bg-white"
+          ></b-input>
+        </b-field>
+        <div class="p-2" />
+        <b-field>
+          <b-input
+            v-model="bzpassword"
             type="password"
             placeholder="password"
             password-reveal
             icon-pack="fas"
             icon="lock"
+            custom-class="bg-white"
           ></b-input>
         </b-field>
-        <div class="p-3" />
-        <b-button @click="login" type="is-dark" expanded>Sign In</b-button>
+        <div class="field">
+          <b-checkbox size="is-small" v-model="rememberMe"
+            ><span class="has-text-primary font-medium"
+              >Ingatkan saya pada perangkat ini</span
+            ></b-checkbox
+          >
+        </div>
+        <div class="p-5" />
+        <b-button @click="login" type="is-primary" expanded>Sign In</b-button>
       </div>
     </div>
     <div class="column bg">
       <div class="p-5">
         <b-button
-          @click="open = true"
-          type="is-light is-pulled-right"
+          @click="openRightSidebar = !openRightSidebar"
+          type="is-primary is-pulled-right"
           icon-right="bars"
         />
       </div>
     </div>
     <!-- SIDEBAR RIGHT -->
-    <b-sidebar
-      type="is-primary"
-      :fullheight="fullheight"
-      :fullwidth="fullwidth"
-      :overlay="overlay"
-      :right="right"
-      :open.sync="open"
-    >
-      <div class="p-5">
-        <div class="columns is-vcentered">
-          <div class="column">
-            <span class="has-text-white">Informasi</span>
-          </div>
-          <div class="column">
-            <b-button
-              @click="open = false"
-              type="is-light is-pulled-right"
-              icon-right="times"
-            />
-          </div>
-        </div>
-        <div class="p-1 menu-right rounded mb-3">
-          <div class="columns is-gapless is-vcentered">
-            <div class="column is-2">
-              <img
-                class="p-1"
-                src="https://bulma.io/images/placeholders/64x64.png"
-              />
-            </div>
-            <div class="column">
-              <div class="pl-2 has-text-white">
-                <span class="font-bold">Tentang Kami</span>
-                <br />
-                <small>Informasi terkait aplikasi</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="p-1 menu-right rounded">
-          <div class="columns is-gapless is-vcentered">
-            <div class="column is-2">
-              <img
-                class="p-1"
-                src="https://bulma.io/images/placeholders/64x64.png"
-              />
-            </div>
-            <div class="column">
-              <div class="pl-2 has-text-white">
-                <span class="font-bold">Bisnis Proses</span>
-                <br />
-                <small>Bisnis proses aplikasi</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </b-sidebar>
+    <sidebar-right
+      :open.sync="openRightSidebar"
+      @close="openRightSidebar = !openRightSidebar"
+    />
   </div>
 </template>
 
 <script>
 import HortiLabelSidebar from "../../components/HortiLabelSidebar";
+import SidebarRight from "../../components/SidebarRight";
 export default {
   components: {
-    HortiLabelSidebar
+    HortiLabelSidebar,
+    SidebarRight
   },
   data() {
     return {
-      open: false,
-      overlay: true,
-      fullheight: true,
-      fullwidth: false,
-      right: true,
-      email: "ipansuryadi@gmail.com",
-      password: "password"
+      openRightSidebar: false,
+      bzemail: "",
+      password: ""
+      // email: "ipansuryadi@gmail.com",
+      // password: "password"
     };
   },
   methods: {
     login: function() {
-      let email = this.email;
-      let password = this.password;
-      this.$store
-        .dispatch("login", { email, password })
-        .then(() => this.$router.push("/dashboard"))
-        .catch(err => console.log(err));
+      // let email = this.bzemail;
+      // let password = this.bzpassword;
+      // this.$store
+      //   .dispatch("login", { email, password })
+      //   .then(() => this.$router.push("/dashboard"))
+      //   .catch(err => console.log(err));
+      this.$router.push("/dashboard");
     }
   }
 };
@@ -133,17 +94,10 @@ export default {
 
 <style lang="css">
 .bg {
-  background-image: url("../../assets/bg.jpg");
+  background-image: url("../../assets/bg.png");
   background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.menu-right:hover {
-  background-color: #16954f;
-  cursor: pointer;
-}
-.menu-right {
-  background-color: #16ba63;
-  cursor: pointer;
+  background-size: auto;
+  background-position: center;
+  background-position-y: 2rem;
 }
 </style>

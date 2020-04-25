@@ -35,7 +35,7 @@ export default {
 @import "~bulma/sass/utilities/_all";
 
 // Set your colors
-$primary: #16ba63;
+$primary: #1eb2a6;
 $primary-invert: findColorInvert($primary);
 $twitter: #4099ff;
 $twitter-invert: findColorInvert($twitter);
@@ -92,6 +92,8 @@ $family-primary: "Montserrat", sans-serif;
 // general
 $body-font-size: 0.875rem;
 $size-normal: 0.875rem;
+
+$sidebar-width: 280px;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

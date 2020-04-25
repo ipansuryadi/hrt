@@ -1,26 +1,23 @@
 <template>
-  <div>
-    <vue-apex-charts
-      type="radialBar"
-      :options="radialBarChart.chartOptions"
-      :series="radialBarChart.series"
-    ></vue-apex-charts>
-  </div>
+  <vue-apex-charts
+    type="radialBar"
+    :options="radialBarChart.chartOptions"
+    :series="radialBarChart.series"
+  ></vue-apex-charts>
 </template>
 <script>
 import VueApexCharts from "vue-apexcharts";
-const themeColors = ["#7367F0", "#28C76F", "#EA5455", "#FF9F43", "#1E1E1E"];
 export default {
+  props: ["color", "value"],
   components: {
     VueApexCharts
   },
   data() {
     return {
       radialBarChart: {
-        series: [44],
+        series: [this.value],
         chartOptions: {
-          redrawOnParentResize: true,
-          colors: themeColors,
+          colors: [this.color],
           plotOptions: {
             radialBar: {
               dataLabels: {
@@ -29,8 +26,11 @@ export default {
                   fontSize: "22px"
                 },
                 value: {
+                  offsetY: 3,
                   show: true,
-                  fontSize: "14px",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  color: this.color,
                   formatter: function(val) {
                     return val + "%";
                   }
@@ -42,7 +42,19 @@ export default {
                     return 249;
                   }
                 }
+              },
+              hollow: {
+                size: "40%"
               }
+              // track: {
+              //   dropShadow: {
+              //     enabled: true,
+              //     top: 2,
+              //     left: 0,
+              //     blur: 4,
+              //     opacity: 0.15
+              //   }
+              // }
             }
           },
           labels: ["Apples"]
