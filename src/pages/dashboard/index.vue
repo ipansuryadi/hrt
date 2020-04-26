@@ -9,8 +9,8 @@
         v-for="(realisasi, index) in realisasiList"
         :key="index"
       >
-        <div class="">
-          <div class="font-medium" style="height:42px">
+        <div class="card rounded-md">
+          <div class="font-medium p-4" style="height:42px">
             {{ realisasi.label }}
           </div>
           <div class="flex items-center justify-center">
@@ -18,7 +18,7 @@
               :color="realisasi.radialColor"
               :value="realisasi.radialValue"
             />
-            <div class="text-center" style="min-width:100px">
+            <div class="text-center pr-6" style="min-width:100px">
               <small :style="'color:' + realisasi.textColor">{{
                 realisasi.desc
               }}</small>
